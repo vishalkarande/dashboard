@@ -37,3 +37,31 @@ async def userlogin():
 
 
 
+@login.route('/adduser/', methods=['GET', 'POST'])
+async def adduser():
+    print("adduser hit")
+    msg = ''
+    if request.method == 'POST' :
+        name = request.form['name']
+        email = request.form['email']
+        password = request.form['password']
+        d.mycursor.execute(
+                "INSERT INTO login (name, email, password) VALUES (%s,%s,%s)", (name, email, password))
+        d.mydb.commit()
+        l_id = d.mycursor.lastrowid
+        print(l_id)
+        dev = 0
+        d.mycursor.execute(
+            "INSERT INTO `page_access`( `u_id`, `developer`) VALUES (%s,%s)", (l_id, dev))
+        d.mydb.commit()
+
+        # If account exists in accounts table in out database
+        return redirect(url_for('user'))
+    else:
+        # Account doesnt exist or username/password incorrect
+        msg = 'Incorrect username/password!'
+    # Show the login form with message (if any)
+    return render_template('index.html', msg=msg)
+
+
+
