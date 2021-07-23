@@ -5,7 +5,7 @@
 
   <!-- Page Heading -->
   <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+    <h1 class="h3 mb-0 text-gray-800">USER MANAGEMENT</h1>
     <a
       class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"
       data-toggle="modal"
@@ -46,17 +46,12 @@
           <div class="wrapper">
             <div class="col-lg-12">
               <div class="">
-                <form class="user" method="post">
+                <form
+                  class="user"
+                  action="{{ url_for('login.adduser') }}"
+                  method="post"
+                >
                   <div class="form-group row">
-                    <input
-                      type="text"
-                      class="form-control form-control-user"
-                      id="exampleLastName"
-                      required
-                      hidden
-                      name="id"
-                      placeholder="User Type"
-                    />
                     <div class="col-sm-6 mb-3 mb-sm-0">
                       <input
                         type="text"
@@ -98,16 +93,20 @@
                       placeholder="Password"
                     />
                   </div>
+                  <div class="modal-footer">
+                    <button
+                      type="button"
+                      class="btn btn-secondary"
+                      data-dismiss="modal"
+                    >
+                      Close
+                    </button>
+                    <input type="submit" class="btn btn-primary" value="Add" />
+                  </div>
                 </form>
               </div>
             </div>
           </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">
-            Close
-          </button>
-          <button type="button" class="btn btn-primary">Add</button>
         </div>
       </div>
     </div>
