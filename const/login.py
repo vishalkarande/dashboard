@@ -3,13 +3,14 @@ from flask import Flask, render_template, request, redirect, url_for, session , 
 import const.db as d
 from functools import wraps
 import const.decorators as decorator
+import asyncio
 
 
 login = Blueprint('login', __name__,template_folder='templates')
 
 
 @login.route('/loginuser/', methods=['GET', 'POST'])
-def userlogin():
+async def userlogin():
     print("Login hit")
     msg = ''
     if request.method == 'POST' and 'username' in request.form and 'password' in request.form:
