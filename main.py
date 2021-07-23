@@ -1,9 +1,6 @@
-
-import httpx
 import threading
-from flask import Flask, render_template, request, redirect, url_for, session , jsonify
+from flask import Flask, render_template, request, redirect, url_for, session , jsonify,Blueprint, render_template
 # import MySQLdb.cursors
-from flask import Blueprint, render_template
 import time
 import const.db as d
 from const.login import login
@@ -52,7 +49,7 @@ def logout():
     session.clear()
     return redirect(url_for('home'))
     
-    
+
 @app.route('/user/')
 @decorator.getUser
 def user(user):
