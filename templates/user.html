@@ -1,0 +1,39 @@
+{% extends 'layout.html' %} {% block title %}Home{% endblock %} {% block content
+%}
+<div class="container-fluid">
+  <!-- Page Heading -->
+  <div class="wrapper">
+    <table class="c-table">
+      <thead class="c-table__header">
+        <tr>
+          <th></th>
+          <th class="c-table__col-label">Name</th>
+          <th class="c-table__col-label">Email</th>
+          <th class="c-table__col-label">Access Level</th>
+          <th class="c-table__col-label">Action</th>
+        </tr>
+      </thead>
+      <tbody class="c-table__body">
+        {% for your_list_element in user: %}
+        <tr>
+          <td>{{ your_list_element[0] }}</td>
+          <td class="c-table__cell">{{ your_list_element[1] }}</td>
+          <td class="c-table__cell">{{ your_list_element[2] }}</td>
+          <td class="c-table__cell">{{ your_list_element[4] }}</td>
+          <td class="c-table__cell">
+            <a href="{{ url_for('edit.edituser', id=your_list_element[0]) }}"
+              ><i class="fas fa-user-edit"></i
+            ></a>
+            <a
+              href="{{ url_for('delete.deleteuser', id=your_list_element[0]) }}"
+              ><i style="margin-left: 20px" class="fas fa-trash"></i
+            ></a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+{% endblock %}

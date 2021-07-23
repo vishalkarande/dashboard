@@ -2,17 +2,22 @@
 import httpx
 import threading
 from flask import Flask, render_template, request, redirect, url_for, session , jsonify
-from flask_mysqldb import MySQL
 # import MySQLdb.cursors
 from flask import Blueprint, render_template
 import time
 import const.db as d
 from const.login import login
+from const.delete import delete
+from const.edit import edit
 import const.decorators as decorator
 
 print(f"In flask global level: {threading.current_thread().name}")
 app = Flask(__name__)
+
+# BluePrints
 app.register_blueprint(login)
+app.register_blueprint(delete)
+app.register_blueprint(edit)
 # Change this to your secret key (can be anything, it's for extra protection)
 app.secret_key = 'your secret key'
 
@@ -27,7 +32,9 @@ def home():
     # Check if user is loggedin
     if 'loggedin' in session:
         # User is loggedin show them the home page
-        return render_template('home.html', username=session['username'])
+        d.mycursor.execute("select count(*) from login")
+        count = d.mycursor.fetchone()
+        return render_template('home.html', username=session['username'], user_count=count[0])
     # User is not loggedin redirect to login page
     return redirect(url_for('login'))
 
@@ -44,6 +51,13 @@ def logout():
     print("Logout called")
     session.clear()
     return redirect(url_for('home'))
+    
+    
+@app.route('/user/')
+@decorator.getUser
+def user(user):
+    return render_template('user.html',user=user)
+
 
 if __name__ == "__main__":
     app.run(debug=True)
