@@ -1,0 +1,69 @@
+{% extends 'layout.html' %} {% block title %}Home{% endblock %} {% block content
+%} {{userdata}}
+<div class="container-fluid">
+  <!-- Page Heading -->
+  <div class="wrapper">
+    <div class="col-lg-12">
+      <div class="">
+        <div class="text-center">
+          <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
+        </div>
+        <form class="user" action="{{ url_for('edit.update') }}" method="post">
+          <div class="form-group row">
+            <input
+              type="text"
+              class="form-control form-control-user"
+              id="exampleLastName"
+              required
+              hidden
+              name="id"
+              value="{{ userdata[0] }}"
+              placeholder="User Type"
+            />
+            <div class="col-sm-6 mb-3 mb-sm-0">
+              <input
+                type="text"
+                required
+                name="name"
+                class="form-control form-control-user"
+                id="exampleFirstName"
+                value="{{ userdata[1] }}"
+                placeholder="User Name"
+              />
+            </div>
+            <div class="col-sm-6">
+              <input
+                type="text"
+                class="form-control form-control-user"
+                id="exampleLastName"
+                name="user"
+                required
+                value="{{ userdata[4] }}"
+                placeholder="User Type"
+              />
+            </div>
+          </div>
+          <div class="form-group">
+            <input
+              type="email"
+              class="form-control form-control-user"
+              id="exampleInputEmail"
+              value="{{ userdata[2] }}"
+              required
+              name="email"
+              placeholder="Email Address"
+            />
+          </div>
+
+          <input
+            class="btn btn-primary btn-user btn-block"
+            value="Update Details"
+            type="submit"
+          />
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
