@@ -18,8 +18,8 @@ def deleteuser(id):
             "DELETE FROM `user_details` WHERE id='%d'" % id)
         dbs.commit()
         # Delete Page Access Records for User
-        # mycursor.execute(
-        #     "DELETE FROM `page_access` WHERE u_id='%d'" % id)
+        mycursor.execute(
+            "DELETE FROM `page_access` WHERE uid='%d'" % id)
         dbs.commit()
         print("delete success")
         return redirect(url_for("users"))

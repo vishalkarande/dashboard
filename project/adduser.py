@@ -26,10 +26,17 @@ def adduser():
     if request.method == 'POST':
         name = request.form['name']
         email = request.form['email']
+        # uid=request.form['uid']
         password = bcrypt.generate_password_hash(
             password=request.form['password'])
         mycursor.execute(
             "INSERT INTO user_details (name, email, password) VALUES (%s,%s,%s)", (name, email, password))
+        dbs.commit()
+        l_id = mycursor.lastrowid
+        print(l_id)
+        dev=0
+        mycursor.execute(
+            "INSERT INTO page_access (uid,adminp) VALUES (%s,%s)", (l_id,dev))
         dbs.commit()
 
     else:
