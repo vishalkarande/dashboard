@@ -1,9 +1,12 @@
+
 import mysql.connector
+
+
 # Enter your database connection details below
-mydb = mysql.connector.connect(
+dbs = mysql.connector.connect(
     host="localhost",
     user="root",
     password="",
-    database="test"
+    database="flaskdatabase"
 )
-mycursor = mydb.cursor()
+mycursor = dbs.cursor()
