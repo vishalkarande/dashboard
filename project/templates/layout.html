@@ -31,7 +31,6 @@
       href="{{ url_for('static', filename='sb-admin-2.css') }}"
       rel="stylesheet"
     />
-
     <link
       href="{{ url_for('static', filename='user.css') }}"
       rel="stylesheet"
@@ -325,7 +324,7 @@
                   aria-expanded="false"
                 >
                   <span class="mr-2 d-none d-lg-inline text-gray-600 small"
-                    >{{ session['username'] }}</span
+                    >{{ current_user.name }}</span
                   >
                   <img
                     class="img-profile rounded-circle"
@@ -354,7 +353,7 @@
                     Activity Log
                   </a>
                   <div class="dropdown-divider"></div>
-                  <a href="{{url_for('logout')}}" class="dropdown-item">
+                  <a href="{{url_for('auth.logout')}}" class="dropdown-item">
                     <i
                       class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"
                     ></i>

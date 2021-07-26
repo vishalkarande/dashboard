@@ -1,9 +1,6 @@
 {% extends 'layout.html' %} {% block title %}Home{% endblock %} {% block content
 %}
 <div class="container-fluid">
-  <!-- Page Heading -->
-
-  <!-- Page Heading -->
   <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800">USER MANAGEMENT</h1>
     <a
@@ -48,7 +45,7 @@
               <div class="">
                 <form
                   class="user"
-                  action="{{ url_for('login.adduser') }}"
+                  action="{{ url_for('addusers.adduser') }}"
                   method="post"
                 >
                   <div class="form-group row">
@@ -116,7 +113,7 @@
     <table class="c-table">
       <thead class="c-table__header">
         <tr>
-          <th></th>
+          <th class="c-table__col-label">ID</th>
           <th class="c-table__col-label">Name</th>
           <th class="c-table__col-label">Email</th>
           <th class="c-table__col-label">Access Level</th>
@@ -124,18 +121,17 @@
         </tr>
       </thead>
       <tbody class="c-table__body">
-        {% for your_list_element in user: %}
+        {% for user in users: %}
         <tr>
-          <td>{{ your_list_element[0] }}</td>
-          <td class="c-table__cell">{{ your_list_element[1] }}</td>
-          <td class="c-table__cell">{{ your_list_element[2] }}</td>
-          <td class="c-table__cell">{{ your_list_element[4] }}</td>
+          <td class="c-table__cell">{{ user[0] }}</td>
+          <td class="c-table__cell">{{ user[1] }}</td>
+          <td class="c-table__cell">{{ user[2] }}</td>
+          <td class="c-table__cell">{{ user[4] }}</td>
           <td class="c-table__cell">
-            <a href="{{ url_for('edit.edituser', id=your_list_element[0]) }}"
+            <a href="{{ url_for('edit.edituser', id=user[0]) }}"
               ><i class="fas fa-user-edit"></i
             ></a>
-            <a
-              href="{{ url_for('delete.deleteuser', id=your_list_element[0]) }}"
+            <a href="{{ url_for('delete.deleteuser', id=user[0]) }}"
               ><i style="margin-left: 20px" class="fas fa-trash"></i
             ></a>
           </td>
