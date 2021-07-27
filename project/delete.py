@@ -10,6 +10,8 @@ delete = Blueprint('delete', __name__, template_folder='templates')
 
 # Delete User data and Page records
 @delete.route('/delete/<int:id>', methods=['POST', 'GET'])
+@login_required
+@is_admin
 def deleteuser(id):
     print(id)
     try:
@@ -18,8 +20,8 @@ def deleteuser(id):
             "DELETE FROM `user_details` WHERE id='%d'" % id)
         dbs.commit()
         # Delete Page Access Records for User
-        # mycursor.execute(
-        #     "DELETE FROM `page_access` WHERE u_id='%d'" % id)
+        mycursor.execute(
+            "DELETE FROM `page_access` WHERE uid='%d'" % id)
         dbs.commit()
         print("delete success")
         return redirect(url_for("users"))
