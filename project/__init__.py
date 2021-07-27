@@ -24,7 +24,7 @@ app.config["SECRET_KEY"] = "newkey"
 # connect our app with database
 app.config[
     "SQLALCHEMY_DATABASE_URI"
-] = "mysql://root:root@localhost/flaskdatabase"
+] = "mysql://root@localhost/flaskdatabase"
 
 # don't track every database modification
 app.config["SQLALCHEMY_TRACK_MODIFICATION"] = False
@@ -43,9 +43,6 @@ login_manager.login_view = "auth.login"
 
 @login_manager.user_loader
 def load_user(user_id):
-    print(user_id)
-    print("inuser load")
-    print(type(userDetails.query.get(user_id)))
     return userDetails.query.get(user_id)
 
 
@@ -103,3 +100,8 @@ app.register_blueprint(delete_blueprint)
 # blueprint for routes of adduserr
 from project.adduser import addusers as adduser_blueprint
 app.register_blueprint(adduser_blueprint)
+
+
+# blueprint for routes of architect
+from project.architect import architect as architect_blueprint
+app.register_blueprint(architect_blueprint)

@@ -43,15 +43,16 @@ def update():
         user = request.form['user']
 
         admin = request.form['admin']
-        developer = request.form['developer']
-        tester = request.form['tester']
+        architect = request.form['architect']
+        operation = request.form['operation']
         # Update User Records
         mycursor.execute(
             "UPDATE user_details SET name=%s,email=%s,type=%s WHERE id=%s", (name, email, user, id))
         dbs.commit()
         mycursor.execute(
-                "UPDATE page_access SET adminp=%s,developer=%s,tester=%s WHERE uid=%s", (admin, developer, tester, id))
+            "UPDATE page_access SET adminp=%s,architect=%s,operations=%s WHERE uid=%s", (admin, architect, operation, id))
         dbs.commit()
+        print("update success")
         return redirect(url_for("users"))
 
     except Exception as error:

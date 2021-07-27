@@ -4,9 +4,8 @@ from functools import wraps
 from project.database import mycursor
 import json
 
+
 # get all users from database
-
-
 def getAllUsers():
     # get all users from databse
     mycursor.execute("select * from user_details")

@@ -15,7 +15,6 @@ def home():
     # get all users ount to be shown on homepage
     count = getTotalUsers()
     pages = getPages(current_user.id)
-    print(pages)
     return render_template('home.html', current_user=current_user, user_count=count, pages=pages)
 
 

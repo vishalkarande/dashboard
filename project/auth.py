@@ -8,6 +8,7 @@ from wtforms.validators import DataRequired, Email
 from flask_login import login_user, login_required, logout_user, current_user
 from functools import wraps
 import asyncio
+from project.utils import getPages
 
 
 # blueprint of the auth which needs to be imported to __init__.py
@@ -18,13 +19,26 @@ auth = Blueprint("auth", __name__, template_folder='templates')
 def is_admin(func):
     @wraps(func)
     def inner(*args, **kwargs):
-        access = "user"
+        access = ""
         print(func.__name__)
         if current_user.type == "admin":
             return func(*args, **kwargs)
         else:
             return redirect(url_for('home'))
 
+    return inner
+
+
+def is_architect_access(func):
+    @wraps(func)
+    def inner(*args, **kwargs):
+        access = False
+        pageAccess = getPages(current_user.id)
+        if pageAccess['architect'] == 1:
+            access = True
+            return func(*args, **kwargs)
+        else:
+            return redirect(url_for('home'))
     return inner
 
 

@@ -42,10 +42,12 @@ def adduser():
                 "INSERT INTO user_details (name, email, password,type) VALUES (%s,%s,%s,%s)", (name, email, password, type))
             dbs.commit()
             l_id = mycursor.lastrowid
-            print(l_id)
-            dev = 0
+            if type == 'admin':
+                adminaccess = 1
+            else:
+                adminaccess = 0
             mycursor.execute(
-                "INSERT INTO page_access (uid,adminp) VALUES (%s,%s)", (l_id, dev))
+                "INSERT INTO page_access (uid,adminp) VALUES (%s,%s)", (l_id, adminaccess))
             dbs.commit()
 
     else:
