@@ -30,21 +30,22 @@ def adduser():
         # uid=request.form['uid']
         password = bcrypt.generate_password_hash(
             password=request.form['password'])
+        type = request.form['type']
 
-        #check if user already exist
+        # check if user already exist
         if len(getSingleUser(email)) != 0:
             msg = "user already exist"
             return redirect(url_for('users'))
 
         else:
             mycursor.execute(
-                "INSERT INTO user_details (name, email, password) VALUES (%s,%s,%s)", (name, email, password))
+                "INSERT INTO user_details (name, email, password,type) VALUES (%s,%s,%s,%s)", (name, email, password, type))
             dbs.commit()
             l_id = mycursor.lastrowid
             print(l_id)
-            dev=0
+            dev = 0
             mycursor.execute(
-                "INSERT INTO page_access (uid,adminp) VALUES (%s,%s)", (l_id,dev))
+                "INSERT INTO page_access (uid,adminp) VALUES (%s,%s)", (l_id, dev))
             dbs.commit()
 
     else:
