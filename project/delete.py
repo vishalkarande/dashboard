@@ -10,8 +10,6 @@ delete = Blueprint('delete', __name__, template_folder='templates')
 
 # Delete User data and Page records
 @delete.route('/delete/<int:id>', methods=['POST', 'GET'])
-@login_required
-@is_admin
 def deleteuser(id):
     print(id)
     try:

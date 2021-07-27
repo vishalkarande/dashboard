@@ -4,7 +4,7 @@ from flask import Flask, render_template, redirect, url_for
 from flask_login import login_required, current_user
 from project import db, app
 from project.auth import is_admin
-from project.utils import getAllUsers, getTotalUsers
+from project.utils import getAllUsers, getTotalUsers, getPages
 
 # route for home
 
@@ -14,7 +14,9 @@ from project.utils import getAllUsers, getTotalUsers
 def home():
     # get all users ount to be shown on homepage
     count = getTotalUsers()
-    return render_template('home.html', current_user=current_user, user_count=count)
+    pages = getPages(current_user.id)
+    print(pages)
+    return render_template('home.html', current_user=current_user, user_count=count, pages=pages)
 
 
 # route for admin to access all users details
@@ -24,7 +26,8 @@ def home():
 def users():
     # get all users  details from database in users
     users = getAllUsers()
-    return render_template('allusers.html', current_user=current_user, users=users)
+    pages = getPages(current_user.id)
+    return render_template('allusers.html', current_user=current_user, users=users, pages=pages)
 
 
 # Run the app

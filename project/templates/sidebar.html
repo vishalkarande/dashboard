@@ -28,6 +28,7 @@
   <!-- Divider -->
   <hr class="sidebar-divider" />
 
+  
   <!-- Heading -->
   <div class="sidebar-heading">Interface</div>
 
@@ -42,7 +43,7 @@
       aria-controls="collapseTwo"
     >
       <i class="fas fa-fw fa-cog"></i>
-      <span>Components</span>
+      <span>Pages</span>
     </a>
     <div
       id="collapseTwo"
@@ -51,20 +52,30 @@
       data-parent="#accordionSidebar"
     >
       <div class="bg-white py-2 collapse-inner rounded">
-        <h6 class="collapse-header">Custom Components:</h6>
+        <h6 class="collapse-header">User Pages:</h6>
+        {% if current_user.type=="admin" or pages["admin"] == 1: %}
         <a class="collapse-item"href="{{ url_for('users') }}">All Users</a>
-        
+        {% endif %}
+        {% if pages["developer"] == 1 or pages["admin"] == 1 :%}
+        <a class="collapse-item"href="{{ url_for('users') }}">Developer</a>
+        {% endif %}
+        {%  if pages["tester"]==1 or pages["admin"] == 1 :%}
+        <a class="collapse-item"href="{{ url_for('users') }}">Tester</a>
+        {% endif %}
       </div>
     </div>
   </li>
 
- 
-
   <!-- Divider -->
   <hr class="sidebar-divider" />
 
-  
 
+
+
+  <!-- pages -->
+
+
+  
 
 
   <!-- Sidebar Toggler (Sidebar) -->

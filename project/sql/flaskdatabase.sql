@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 26, 2021 at 03:14 PM
+-- Generation Time: Jul 26, 2021 at 07:19 AM
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 8.0.8
 
@@ -24,28 +24,6 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `page_access`
---
-
-CREATE TABLE `page_access` (
-  `Id` int(11) NOT NULL,
-  `uid` int(11) NOT NULL,
-  `adminp` tinyint(1) DEFAULT 0,
-  `developer` tinyint(1) DEFAULT 0,
-  `tester` tinyint(1) DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `page_access`
---
-
-INSERT INTO `page_access` (`Id`, `uid`, `adminp`, `developer`, `tester`) VALUES
-(1, 7, 0, 1, 0),
-(3, 8, 1, 1, 1);
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `user_details`
 --
 
@@ -62,19 +40,13 @@ CREATE TABLE `user_details` (
 --
 
 INSERT INTO `user_details` (`id`, `name`, `email`, `password`, `type`) VALUES
-(7, 'Anand', 'anand@email.com', '$2b$12$blSYk36a9LogZzMUz/6dz.S7TLm5jk9Zuh.NazL77yxp2laoTwGvG', 'admin'),
-(8, 'anand', 'admin@admin.com', '$2b$12$EkaKfU7BssZFdN6kQg/PquuUMHi61dwo9EdlTeaw/3JCCYT7EaG.G', 'admin');
+(1, 'Anand', 'admin@admin.com', '$2b$12$jOaw7MJKh9mp2c4nKgBGV.C8R7GALFjZIJH/HlK3AeOr8LLG8eheW', 'admin'),
+(3, 'Anand Yeole', 'anand@email.com', '$2b$12$jOaw7MJKh9mp2c4nKgBGV.C8R7GALFjZIJH/HlK3AeOr8LLG8eheW', 'user'),
+(6, 'vishal', 'vishal@gmail.com', '$2b$12$sutADbT.kN6.9fQaMbTsF.THgSLNniw53cVVt3rU9WdSOywuAwBZq', 'user');
 
 --
 -- Indexes for dumped tables
 --
-
---
--- Indexes for table `page_access`
---
-ALTER TABLE `page_access`
-  ADD PRIMARY KEY (`Id`),
-  ADD UNIQUE KEY `uid_UNIQUE` (`uid`);
 
 --
 -- Indexes for table `user_details`
@@ -88,16 +60,10 @@ ALTER TABLE `user_details`
 --
 
 --
--- AUTO_INCREMENT for table `page_access`
---
-ALTER TABLE `page_access`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
 -- AUTO_INCREMENT for table `user_details`
 --
 ALTER TABLE `user_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

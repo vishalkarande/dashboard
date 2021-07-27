@@ -24,7 +24,7 @@ app.config["SECRET_KEY"] = "newkey"
 # connect our app with database
 app.config[
     "SQLALCHEMY_DATABASE_URI"
-] = "mysql://root:admin@localhost/flaskdatabase"
+] = "mysql://root:root@localhost/flaskdatabase"
 
 # don't track every database modification
 app.config["SQLALCHEMY_TRACK_MODIFICATION"] = False
